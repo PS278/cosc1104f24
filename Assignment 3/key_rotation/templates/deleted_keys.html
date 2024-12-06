@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deleted Keys</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="d-flex justify-content-between align-items-center p-3 bg-light">
+        <h1>Deleted Keys</h1>
+        <div>
+            <a href="/kms_home" class="btn btn-primary">Home</a>
+            <a href="/logout" class="btn btn-secondary">Logout</a>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <h2 class="text-danger">Keys Pending Deletion</h2>
+        {% if deleted_keys %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Key ID</th>
+                    <th>ARN</th>
+                    <th>Description</th>
+                    <th>Scheduled Deletion Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key in deleted_keys %}
+                <tr>
+                    <td>{{ key.KeyId }}</td>
+                    <td>{{ key.KeyArn }}</td>
+                    <td>{{ key.Description }}</td>
+                    <td>{{ key.DeletionDate }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No keys are currently pending deletion.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
